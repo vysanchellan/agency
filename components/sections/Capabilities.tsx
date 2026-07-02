@@ -1,5 +1,14 @@
 "use client";
 
+import {
+  BarChart3,
+  Code2,
+  Container,
+  Gauge,
+  Palette,
+  Smartphone,
+  type LucideIcon,
+} from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import TiltCard from "@/components/animations/TiltCard";
 import { cn } from "@/lib/utils";
@@ -10,6 +19,8 @@ type Capability = {
   span: string;
   glow: string;
   accent: string;
+  icon: LucideIcon;
+  iconColor: string;
   /** Reveal delay — deliberately non-uniform so the grid fills organically. */
   delay: number;
 };
@@ -23,6 +34,8 @@ const CAPABILITIES: Capability[] = [
     span: "md:col-span-4 md:row-span-2",
     glow: "from-gold/25",
     accent: "bg-gold",
+    icon: Code2,
+    iconColor: "text-gold-bright",
     delay: 0,
   },
   {
@@ -32,6 +45,8 @@ const CAPABILITIES: Capability[] = [
     span: "md:col-span-2",
     glow: "from-brand-indigo-bright/25",
     accent: "bg-brand-indigo-bright",
+    icon: Palette,
+    iconColor: "text-brand-indigo-bright",
     delay: 0.14,
   },
   {
@@ -41,6 +56,8 @@ const CAPABILITIES: Capability[] = [
     span: "md:col-span-2",
     glow: "from-gold-bright/25",
     accent: "bg-gold-bright",
+    icon: Gauge,
+    iconColor: "text-gold-bright",
     delay: 0.07,
   },
   {
@@ -50,6 +67,8 @@ const CAPABILITIES: Capability[] = [
     span: "md:col-span-2",
     glow: "from-violet-500/25",
     accent: "bg-violet-400",
+    icon: Smartphone,
+    iconColor: "text-violet-300",
     delay: 0.2,
   },
   {
@@ -59,6 +78,8 @@ const CAPABILITIES: Capability[] = [
     span: "md:col-span-4",
     glow: "from-brand-indigo/30",
     accent: "bg-brand-indigo-bright",
+    icon: BarChart3,
+    iconColor: "text-brand-indigo-bright",
     delay: 0.11,
   },
   {
@@ -68,6 +89,8 @@ const CAPABILITIES: Capability[] = [
     span: "md:col-span-2",
     glow: "from-amber-500/20",
     accent: "bg-amber-400",
+    icon: Container,
+    iconColor: "text-amber-300",
     delay: 0.25,
   },
 ];
@@ -102,16 +125,38 @@ export default function Capabilities() {
                       cap.glow,
                     )}
                   />
-                  <span
-                    className={cn("mb-6 inline-block h-2 w-2 rounded-full", cap.accent)}
+                  <cap.icon
+                    aria-hidden
+                    className={cn(
+                      "absolute -bottom-4 -right-4 h-32 w-32 opacity-[0.06] transition-all duration-700 group-hover:opacity-[0.12] group-hover:scale-110",
+                      cap.iconColor,
+                    )}
+                    strokeWidth={1.2}
                   />
-                  <div>
-                    <h3 className="mb-3 text-xl font-bold tracking-tight text-zinc-50 md:text-2xl">
-                      {cap.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-zinc-400">
-                      {cap.blurb}
-                    </p>
+                  <div className="relative z-[1] flex items-start gap-4">
+                    <div
+                      className={cn(
+                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
+                        cap.accent === "bg-gold" && "bg-gold/15",
+                        cap.accent === "bg-brand-indigo-bright" && "bg-brand-indigo-bright/15",
+                        cap.accent === "bg-gold-bright" && "bg-gold-bright/15",
+                        cap.accent === "bg-violet-400" && "bg-violet-400/15",
+                        cap.accent === "bg-amber-400" && "bg-amber-400/15",
+                      )}
+                    >
+                      <cap.icon
+                        className={cn("h-5 w-5", cap.iconColor)}
+                        strokeWidth={1.8}
+                      />
+                    </div>
+                    <div>
+                      <h3 className="mb-3 text-xl font-bold tracking-tight text-zinc-50 md:text-2xl">
+                        {cap.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-zinc-400">
+                        {cap.blurb}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </TiltCard>

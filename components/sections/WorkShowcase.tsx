@@ -4,6 +4,13 @@ import { useGSAP } from "@gsap/react";
 import { motion, useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  Code2,
+  Database,
+  ExternalLink,
+  Globe,
+  type LucideIcon,
+} from "lucide-react";
 import { useRef } from "react";
 import TiltCard from "@/components/animations/TiltCard";
 import ProjectCover, { type CoverId } from "@/components/work/ProjectCover";
@@ -11,6 +18,13 @@ import { clipReveal, fadeOnly } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const TECH_ICONS: Record<string, LucideIcon> = {
+  "Next.js": Code2,
+  TypeScript: Code2,
+  PostgreSQL: Database,
+  "Supply Chain": Globe,
+};
 
 type CaseStudy = {
   name: string;
@@ -87,9 +101,10 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
           <span className="absolute bottom-4 right-5 z-[2] font-mono text-8xl font-bold text-white/10 transition-colors duration-500 group-hover:text-white/20">
             0{index + 1}
           </span>
-          <span className="absolute top-5 left-5 z-[2] rounded-full border border-white/15 bg-black/30 px-4 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.15em] text-zinc-200 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
-            Visit live site ↗
-          </span>
+          <div className="absolute top-5 left-5 z-[2] flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-4 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.15em] text-zinc-200 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+            <ExternalLink className="h-3 w-3" strokeWidth={2} />
+            <span>Visit live site</span>
+          </div>
         </motion.div>
 
         <div className="flex items-end justify-between gap-6 p-7">
@@ -108,9 +123,22 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
             <p className="mb-3 max-w-sm text-sm leading-relaxed text-zinc-400">
               {study.description}
             </p>
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.12em] text-zinc-600">
-              {study.tech}
-            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              {study.tech.split(" · ").map((t) => {
+                const TechIcon = TECH_ICONS[t.trim()];
+                return (
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-zinc-800/60 px-3 py-1 font-mono text-[0.6rem] uppercase tracking-[0.1em] text-zinc-500"
+                  >
+                    {TechIcon && (
+                      <TechIcon className="h-3 w-3" strokeWidth={1.8} />
+                    )}
+                    {t.trim()}
+                  </span>
+                );
+              })}
+            </div>
           </div>
         </div>
       </a>
