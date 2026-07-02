@@ -22,9 +22,9 @@ export default function Stats() {
       {/* Parallax background layer */}
       <div aria-hidden className="absolute inset-0">
         <Parallax speed={0.5} className="h-full">
-          <div className="absolute top-0 left-[10%] h-[45vmax] w-[45vmax] rounded-full bg-gold/8 blur-3xl" />
-          <div className="absolute bottom-0 right-[5%] h-[40vmax] w-[40vmax] rounded-full bg-brand-indigo/20 blur-3xl" />
-          <div className="absolute top-[20%] right-[30%] h-[30vmax] w-[30vmax] rounded-full bg-brand-indigo-bright/8 blur-3xl" />
+          <div className="absolute top-0 left-[10%] h-[45vmax] w-[45vmax] bg-[radial-gradient(closest-side,rgba(194,154,69,0.10),transparent_72%)]" />
+          <div className="absolute bottom-0 right-[5%] h-[40vmax] w-[40vmax] bg-[radial-gradient(closest-side,rgba(46,39,120,0.26),transparent_72%)]" />
+          <div className="absolute top-[20%] right-[30%] h-[30vmax] w-[30vmax] bg-[radial-gradient(closest-side,rgba(139,127,224,0.10),transparent_72%)]" />
         </Parallax>
       </div>
 

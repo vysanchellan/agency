@@ -7,46 +7,80 @@ import {
   useTransform,
 } from "framer-motion";
 import LogoReveal from "@/components/brand/LogoReveal";
+import TextReveal from "@/components/animations/TextReveal";
+import { DURATION, EASE } from "@/lib/animations";
+import { useCoarsePointer } from "@/lib/hooks";
 
 export default function Hero() {
   const reduced = useReducedMotion();
+  const coarse = useCoarsePointer();
   const { scrollY } = useScroll();
   const cueOpacity = useTransform(scrollY, [0, 140], [1, 0]);
+
+  // Entrance states: full blur-to-sharp on desktop, transform/opacity-only on
+  // touch devices (identical motion, no animated filters), plain fade when
+  // the user prefers reduced motion.
+  const rise = (delay: number) => ({
+    initial: reduced
+      ? { opacity: 0 }
+      : coarse
+        ? { opacity: 0, y: 20 }
+        : { opacity: 0, y: 20, filter: "blur(8px)" },
+    animate: reduced
+      ? { opacity: 1 }
+      : coarse
+        ? { opacity: 1, y: 0 }
+        : { opacity: 1, y: 0, filter: "blur(0px)" },
+    transition: { duration: DURATION.base, ease: EASE, delay },
+  });
 
   return (
     <section
       id="top"
-      className="noise relative flex min-h-screen flex-col justify-center overflow-hidden"
+      className="noise relative flex min-h-[100svh] flex-col justify-center overflow-hidden"
     >
-      {/* Layered gradient mesh backdrop in brand gold + indigo */}
+      {/* Layered gradient mesh backdrop in brand gold + indigo.
+          Radial gradients instead of blur filters — the soft-orb look is
+          identical, but there is no per-frame filter cost, which is what
+          made mobile scrolling stutter. */}
       <div aria-hidden className="absolute inset-0">
-        <div className="animate-blob absolute -top-1/4 left-[8%] h-[60vmax] w-[60vmax] rounded-full bg-gold/10 blur-3xl max-md:blur-2xl" />
-        <div className="animate-blob-slow absolute top-[30%] -right-[15%] h-[55vmax] w-[55vmax] rounded-full bg-brand-indigo/25 blur-3xl max-md:blur-2xl" />
-        <div className="animate-blob absolute -bottom-[30%] left-[30%] h-[50vmax] w-[50vmax] rounded-full bg-brand-indigo-bright/10 blur-3xl max-md:blur-2xl" />
+        <div className="animate-blob absolute -top-1/4 left-[8%] h-[60vmax] w-[60vmax] bg-[radial-gradient(closest-side,rgba(194,154,69,0.13),transparent_72%)]" />
+        <div className="animate-blob-slow absolute top-[30%] -right-[15%] h-[55vmax] w-[55vmax] bg-[radial-gradient(closest-side,rgba(46,39,120,0.32),transparent_72%)]" />
+        <div className="animate-blob absolute -bottom-[30%] left-[30%] h-[50vmax] w-[50vmax] bg-[radial-gradient(closest-side,rgba(139,127,224,0.12),transparent_72%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-60% to-base" />
       </div>
 
-      <div className="relative z-[2] mx-auto grid w-full max-w-7xl items-center gap-16 px-6 pt-28 md:grid-cols-[1.15fr_0.85fr] md:px-10">
+      <div className="relative z-[2] mx-auto grid w-full max-w-7xl items-center gap-12 px-6 pt-28 pb-16 md:grid-cols-[1.15fr_0.85fr] md:gap-16 md:px-10">
         <div>
-          <p className="mb-8 flex items-center gap-3 text-sm font-medium uppercase tracking-[0.28em] text-zinc-400">
-            <span className="inline-block h-2 w-2 rounded-full bg-gold max-md:animate-pulse" />
+          <motion.p
+            {...rise(0.05)}
+            className="mb-8 flex items-center gap-3 text-sm font-medium uppercase tracking-[0.28em] text-zinc-400"
+          >
+            <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-gold" />
             Kassora — Durban, South Africa
-          </p>
+          </motion.p>
 
           <h1 className="text-[clamp(2.75rem,7.5vw,6.5rem)] font-bold leading-[0.98] tracking-tight text-zinc-50">
-            <span>Market </span>
-            <span className="text-gradient-live">beyond</span>
+            <TextReveal text="Market" delay={0.15} />{" "}
+            <TextReveal
+              text="beyond"
+              delay={0.28}
+              wordClassName="text-gradient-live"
+            />
             <br />
-            <span>limits.</span>
+            <TextReveal text="limits." delay={0.4} />
           </h1>
 
-          <p className="mt-10 max-w-xl text-lg leading-relaxed text-zinc-400 md:text-xl">
+          <motion.p
+            {...rise(0.55)}
+            className="mt-10 max-w-xl text-lg leading-relaxed text-zinc-400 md:text-xl"
+          >
             Kassora gives ambitious companies the intelligence to dominate
             their market. From brand positioning to conversion architecture —
             built for the companies that refuse to be average.
-          </p>
+          </motion.p>
 
-          <div className="mt-12 flex flex-wrap gap-10">
+          <motion.div {...rise(0.75)} className="mt-12 flex flex-wrap gap-10">
             {[
               { num: "300%", label: "Avg. pipeline growth" },
               { num: "48h", label: "Launch turnaround" },
@@ -61,7 +95,7 @@ export default function Hero() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <div className="mx-auto w-[70vw] max-w-[300px] md:w-full md:max-w-[440px]">
@@ -71,9 +105,14 @@ export default function Hero() {
 
       <motion.div
         style={{ opacity: cueOpacity }}
-        className="absolute bottom-10 left-1/2 z-[3] -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 z-[3] -translate-x-1/2"
       >
-        <div className="flex flex-col items-center gap-3 text-zinc-500">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: DURATION.base }}
+          className="flex flex-col items-center gap-3 text-zinc-500"
+        >
           <span className="text-xs font-medium uppercase tracking-[0.3em]">
             Scroll
           </span>
@@ -84,7 +123,7 @@ export default function Hero() {
               className="h-full w-full bg-gradient-to-b from-transparent via-gold to-transparent"
             />
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );

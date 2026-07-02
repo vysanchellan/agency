@@ -54,6 +54,20 @@ export const fadeUp: Variants = {
   },
 };
 
+/**
+ * Same entrance as fadeUp but without the blur filter — visually near
+ * identical, dramatically cheaper on mobile GPUs. Swapped in on touch
+ * devices via useCoarsePointer.
+ */
+export const fadeUpLite: Variants = {
+  hidden: { opacity: 0, y: 36 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: DURATION.base, ease: EASE },
+  },
+};
+
 /** Reduced-motion fallback — a plain fade, no movement, no blur. */
 export const fadeOnly: Variants = {
   hidden: { opacity: 0 },
@@ -67,6 +81,16 @@ export const textRevealItem: Variants = {
     y: "0%",
     opacity: 1,
     filter: "blur(0px)",
+    transition: { duration: DURATION.base, ease: EASE },
+  },
+};
+
+/** Blur-free variant of the word reveal for touch devices. */
+export const textRevealItemLite: Variants = {
+  hidden: { y: "115%", opacity: 0 },
+  visible: {
+    y: "0%",
+    opacity: 1,
     transition: { duration: DURATION.base, ease: EASE },
   },
 };

@@ -72,7 +72,7 @@ const CASE_STUDIES: CaseStudy[] = [
 
 function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
   return (
-    <TiltCard className="group relative flex h-[64vh] min-h-[440px] w-[84vw] max-w-[620px] shrink-0 flex-col overflow-hidden rounded-3xl bg-zinc-900/60 backdrop-blur-sm md:w-[50vw]">
+    <TiltCard className="group relative flex h-[62svh] min-h-[440px] w-[84vw] max-w-[620px] shrink-0 flex-col overflow-hidden rounded-3xl bg-zinc-900/60 md:w-[50vw] md:backdrop-blur-sm">
       <a
         href={study.url}
         target="_blank"
@@ -181,7 +181,7 @@ export default function WorkShowcase() {
     <section
       ref={containerRef}
       id="work"
-      className="relative flex h-screen flex-col justify-center overflow-hidden"
+      className="relative flex h-[100svh] flex-col justify-center overflow-hidden"
     >
       {/* Soft gradient bridge from hero into this section */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-32 h-48 bg-gradient-to-b from-base via-base/60 to-transparent" />

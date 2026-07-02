@@ -19,7 +19,7 @@ export default function ContactCTA() {
     >
       {/* Backdrop glow */}
       <div aria-hidden className="absolute inset-0">
-        <div className="absolute bottom-[-30%] left-1/2 h-[70vmax] w-[70vmax] -translate-x-1/2 rounded-full bg-gradient-to-t from-gold/15 via-brand-indigo/15 to-transparent blur-3xl" />
+        <div className="absolute bottom-[-30%] left-1/2 h-[70vmax] w-[70vmax] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(194,154,69,0.14),rgba(46,39,120,0.12)_50%,transparent_74%)]" />
       </div>
 
       <div className="relative z-[2] mx-auto max-w-7xl px-6 md:px-10">

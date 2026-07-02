@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 import { DURATION, EASE } from "@/lib/animations";
+import { useCoarsePointer } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
 type ScrollRevealProps = {
@@ -27,15 +28,26 @@ export default function ScrollReveal({
   once = true,
 }: ScrollRevealProps) {
   const reduced = useReducedMotion();
+  // Same motion without the blur filter on touch devices — animated filters
+  // are the single biggest jank source on mobile GPUs.
+  const coarse = useCoarsePointer();
 
   return (
     <motion.div
       className={cn("will-change-transform", className)}
-      initial={reduced ? { opacity: 0 } : { opacity: 0, y, filter: "blur(10px)" }}
+      initial={
+        reduced
+          ? { opacity: 0 }
+          : coarse
+            ? { opacity: 0, y }
+            : { opacity: 0, y, filter: "blur(10px)" }
+      }
       whileInView={
         reduced
           ? { opacity: 1 }
-          : { opacity: 1, y: 0, filter: "blur(0px)" }
+          : coarse
+            ? { opacity: 1, y: 0 }
+            : { opacity: 1, y: 0, filter: "blur(0px)" }
       }
       viewport={{ once, margin: "-12% 0px -12% 0px" }}
       transition={{

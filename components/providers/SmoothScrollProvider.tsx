@@ -8,6 +8,11 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+// Mobile browsers fire resize when the address bar shows/hides while
+// scrolling; letting ScrollTrigger refresh mid-pin is what caused the
+// visible "skip" through the pinned showcase on phones.
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 /**
  * Wraps the app in Lenis inertia scrolling and keeps GSAP's ScrollTrigger in
  * lockstep with it: Lenis is driven by the GSAP ticker (single rAF loop) and

@@ -117,7 +117,7 @@ export default function Capabilities() {
           {CAPABILITIES.map((cap) => (
             <ScrollReveal key={cap.title} delay={cap.delay} className={cap.span}>
               <TiltCard maxTilt={5} className="h-full">
-                <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl bg-zinc-900/50 p-8 backdrop-blur-sm transition-colors duration-500 hover:bg-zinc-900/80">
+                <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl bg-zinc-900/50 p-8 transition-colors duration-500 hover:bg-zinc-900/80 md:backdrop-blur-sm">
                   <div
                     aria-hidden
                     className={cn(

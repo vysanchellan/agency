@@ -15,14 +15,16 @@ export default function LogoReveal({ className }: { className?: string }) {
 
   return (
     <div className={cn("relative", className)}>
+      {/* Breathing glow bed — the radial gradient is already soft, so the
+          blur(30px) filter it used to carry was pure GPU waste. Opacity and
+          scale stay on the compositor. */}
       {!reduced && (
         <motion.div
           aria-hidden
           className="absolute inset-[-20%] rounded-full"
           style={{
             background:
-              "radial-gradient(closest-side, rgba(194,154,69,0.16), rgba(46,39,120,0.12) 55%, transparent 75%)",
-            filter: "blur(30px)",
+              "radial-gradient(closest-side, rgba(194,154,69,0.20), rgba(46,39,120,0.15) 55%, transparent 78%)",
           }}
           animate={{ opacity: [0.6, 1, 0.6], scale: [0.96, 1.04, 0.96] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -32,7 +34,7 @@ export default function LogoReveal({ className }: { className?: string }) {
       <motion.svg
         viewBox="115 105 370 392"
         xmlns="http://www.w3.org/2000/svg"
-        className="relative h-full w-full drop-shadow-[0_0_45px_rgba(194,154,69,0.25)]"
+        className="relative h-full w-full md:drop-shadow-[0_0_45px_rgba(194,154,69,0.25)]"
         role="img"
         aria-label="Kassora logo animation"
         animate={reduced ? undefined : { y: [0, -14, 0] }}

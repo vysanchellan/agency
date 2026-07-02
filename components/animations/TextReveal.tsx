@@ -7,7 +7,9 @@ import {
   staggerContainer,
   STAGGER,
   textRevealItem,
+  textRevealItemLite,
 } from "@/lib/animations";
+import { useCoarsePointer } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
 type TextRevealProps = {
@@ -49,8 +51,12 @@ export default function TextReveal({
     "aria-label"?: string;
   }>;
   const reduced = useReducedMotion();
+  const coarse = useCoarsePointer();
   const words = text.split(" ");
   const stagger = per === "char" ? STAGGER.chars : STAGGER.words;
+  // Identical rise-out-of-clip motion; the blur polish only runs on devices
+  // that can afford animated filters.
+  const itemVariants = coarse ? textRevealItemLite : textRevealItem;
 
   if (reduced) {
     return (
@@ -88,7 +94,7 @@ export default function TextReveal({
               Array.from(word).map((char, ci) => (
                 <motion.span
                   key={ci}
-                  variants={textRevealItem}
+                  variants={itemVariants}
                   className={cn(
                     "inline-block will-change-transform",
                     wordClassName,
@@ -99,7 +105,7 @@ export default function TextReveal({
               ))
             ) : (
               <motion.span
-                variants={textRevealItem}
+                variants={itemVariants}
                 className={cn("inline-block will-change-transform", wordClassName)}
               >
                 {word}

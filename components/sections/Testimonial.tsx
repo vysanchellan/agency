@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useRef } from "react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { useCoarsePointer } from "@/lib/hooks";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
@@ -37,6 +38,7 @@ export default function Testimonial() {
   const sectionRef = useRef<HTMLElement>(null);
   const quoteRef = useRef<HTMLParagraphElement>(null);
   const reduced = useReducedMotion();
+  const coarse = useCoarsePointer();
 
   useGSAP(
     () => {
@@ -56,10 +58,13 @@ export default function Testimonial() {
         }
       });
 
+      // Scrubbing an animated blur across dozens of word spans is the kind
+      // of load mobile GPUs can't sustain — touch devices keep the identical
+      // opacity/rise reveal without the filter.
       gsap.from(split.words, {
         opacity: 0.08,
         y: 14,
-        filter: "blur(6px)",
+        ...(coarse ? {} : { filter: "blur(6px)" }),
         stagger: 0.04,
         ease: "none",
         scrollTrigger: {
@@ -72,7 +77,7 @@ export default function Testimonial() {
 
       return () => split.revert();
     },
-    { scope: sectionRef, dependencies: [reduced] },
+    { scope: sectionRef, dependencies: [reduced, coarse] },
   );
 
   return (
@@ -121,7 +126,7 @@ export default function Testimonial() {
         <div className="mt-24 grid gap-6 md:grid-cols-2">
           {SUPPORTING.map((t, i) => (
             <ScrollReveal key={t.name} delay={i * 0.12}>
-              <figure className="flex h-full flex-col justify-between rounded-3xl bg-zinc-900/50 p-8 backdrop-blur-sm">
+              <figure className="flex h-full flex-col justify-between rounded-3xl bg-zinc-900/50 p-8 md:backdrop-blur-sm">
                 <blockquote className="text-base leading-relaxed text-zinc-300">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
