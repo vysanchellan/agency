@@ -1,5 +1,4 @@
 import Capabilities from "@/components/sections/Capabilities";
-import ClientMarquee from "@/components/sections/ClientMarquee";
 import ContactCTA from "@/components/sections/ContactCTA";
 import Hero from "@/components/sections/Hero";
 import SiteHeader from "@/components/sections/SiteHeader";
@@ -13,7 +12,6 @@ export default function Home() {
     <main>
       <SiteHeader />
       <Hero />
-      <ClientMarquee />
       <WorkShowcase />
       <Capabilities />
       <Process />
