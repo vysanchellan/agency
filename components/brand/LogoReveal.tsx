@@ -78,7 +78,7 @@ export default function LogoReveal({ className }: { className?: string }) {
         className="will-change-transform"
       >
         <motion.svg
-          viewBox="100 90 400 430"
+          viewBox="115 105 370 392"
           xmlns="http://www.w3.org/2000/svg"
           className="relative h-full w-full drop-shadow-[0_0_45px_rgba(194,154,69,0.25)]"
           role="img"

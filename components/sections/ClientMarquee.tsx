@@ -3,9 +3,7 @@
 const CLIENTS = [
   "PanelPro Auto",
   "Travelling South Africa",
-  "Top Notch Creations",
-  "OnlySA",
-  "Just Lance",
+  "Point-Taken Group",
   "Lulalend",
   "Yoco",
   "SnapScan",

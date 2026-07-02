@@ -14,6 +14,12 @@ type TextRevealProps = {
   text: string;
   as?: ElementType;
   className?: string;
+  /**
+   * Extra class applied to each animated word/char span. Use this for
+   * background-clip:text effects (e.g. "text-gradient-live") — the clip must
+   * live on the element that directly contains the text, not a wrapper.
+   */
+  wordClassName?: string;
   /** Seconds before the first unit animates. */
   delay?: number;
   /** Split granularity. */
@@ -31,6 +37,7 @@ export default function TextReveal({
   text,
   as = "span",
   className,
+  wordClassName,
   delay = 0,
   per = "word",
   once = true,
@@ -49,7 +56,7 @@ export default function TextReveal({
     return (
       <Tag className={className}>
         <motion.span
-          className="inline-block"
+          className={cn("inline-block", wordClassName)}
           variants={fadeOnly}
           initial="hidden"
           whileInView="visible"
@@ -82,7 +89,10 @@ export default function TextReveal({
                 <motion.span
                   key={ci}
                   variants={textRevealItem}
-                  className="inline-block will-change-transform"
+                  className={cn(
+                    "inline-block will-change-transform",
+                    wordClassName,
+                  )}
                 >
                   {char}
                 </motion.span>
@@ -90,7 +100,7 @@ export default function TextReveal({
             ) : (
               <motion.span
                 variants={textRevealItem}
-                className="inline-block will-change-transform"
+                className={cn("inline-block will-change-transform", wordClassName)}
               >
                 {word}
               </motion.span>

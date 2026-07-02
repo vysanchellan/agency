@@ -26,9 +26,11 @@ export default function ContactCTA() {
         <h2 className="max-w-5xl text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.02] tracking-tight text-zinc-50">
           <TextReveal text="Let's build something" />
           <br />
-          <span className="text-gradient-live">
-            <TextReveal text="legendary." delay={0.2} />
-          </span>
+          <TextReveal
+            text="legendary."
+            delay={0.2}
+            wordClassName="text-gradient-live"
+          />
         </h2>
 
         <ScrollReveal delay={0.35}>

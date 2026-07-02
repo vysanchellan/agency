@@ -8,8 +8,7 @@ own flagship demo: every animation on it is a selling point.
 
 Live portfolio: [PanelPro Auto](https://panelproauto.co.za),
 [Travelling South Africa](https://travellingsouthafrica.co.za),
-[Top Notch Creations](https://top-notch-pi.vercel.app),
-[OnlySA](https://onlysa.vercel.app), [Just Lance](https://justlance.vercel.app).
+[Point-Taken Group](https://pointtaken.co.za).
 
 ## Stack
 

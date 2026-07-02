@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils";
  */
 
 export const KASSORA_PATHS = {
-  stem: "M150 140 H258 L212 192 V238 L198 252 V336 Q194 378 150 412 Z",
+  stem: "M150 140 H266 L216 194 V238 L202 252 V338 Q198 380 150 414 Z",
   sweep:
-    "M448 140 H336 L204 292 Q158 342 166 402 L182 462 Q170 398 220 344 L448 140 Z",
-  chevron: "M218 470 L330 332 L446 470 H374 L330 416 L286 470 Z",
+    "M448 140 H324 L194 296 Q150 346 160 404 L176 462 Q164 398 214 344 L448 140 Z",
+  chevron: "M204 462 L322 308 L444 462 H366 L322 398 L274 462 Z",
 } as const;
 
 export const BRAND = {
@@ -34,7 +34,7 @@ export default function KassoraMark({
 }: KassoraMarkProps) {
   return (
     <svg
-      viewBox="120 110 360 390"
+      viewBox="135 125 330 352"
       xmlns="http://www.w3.org/2000/svg"
       className={cn("block", className)}
       role="img"

@@ -44,9 +44,11 @@ export default function Hero() {
 
           <h1 className="text-[clamp(2.75rem,7.5vw,6.5rem)] font-bold leading-[0.98] tracking-tight text-zinc-50">
             <TextReveal text="Market" delay={0.35} />{" "}
-            <span className="text-gradient-live">
-              <TextReveal text="beyond" delay={0.5} />
-            </span>
+            <TextReveal
+              text="beyond"
+              delay={0.5}
+              wordClassName="text-gradient-live"
+            />
             <br />
             <TextReveal text="limits." delay={0.65} />
           </h1>

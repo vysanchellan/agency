@@ -108,6 +108,72 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* ---------------------------------------------------------------------------
+   Project cover animations — flowing dashes, a dot travelling a route via
+   offset-path, and a drifting sheen. Used by components/work/ProjectCover.
+--------------------------------------------------------------------------- */
+@keyframes cover-dash {
+  to {
+    stroke-dashoffset: -64;
+  }
+}
+
+.cover-dash {
+  animation: cover-dash 2.4s linear infinite;
+}
+
+@keyframes cover-travel {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+.cover-travel {
+  offset-rotate: 0deg;
+  animation: cover-travel 9s linear infinite;
+}
+
+@keyframes cover-sheen {
+  0%,
+  100% {
+    transform: translateX(-60%) skewX(-14deg);
+  }
+  50% {
+    transform: translateX(160%) skewX(-14deg);
+  }
+}
+
+.cover-sheen {
+  animation: cover-sheen 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes cover-drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(26px);
+  }
+}
+
+.cover-drift {
+  animation: cover-drift 12s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover-dash,
+  .cover-travel,
+  .cover-sheen,
+  .cover-drift {
+    animation: none;
+  }
+}
+
 /* Marquee edge fade */
 .marquee-mask {
   mask-image: linear-gradient(
