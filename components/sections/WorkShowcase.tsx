@@ -1,7 +1,7 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -14,7 +14,6 @@ import {
 import { useRef } from "react";
 import TiltCard from "@/components/animations/TiltCard";
 import ProjectCover, { type CoverId } from "@/components/work/ProjectCover";
-import { clipReveal, fadeOnly } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -76,8 +75,6 @@ const CASE_STUDIES: CaseStudy[] = [
 ];
 
 function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
-  const reduced = useReducedMotion();
-
   return (
     <TiltCard className="group relative flex h-[64vh] min-h-[440px] w-[84vw] max-w-[620px] shrink-0 flex-col overflow-hidden rounded-3xl bg-zinc-900/60 backdrop-blur-sm md:w-[50vw]">
       <a
@@ -86,26 +83,22 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
         rel="noopener noreferrer"
         className="flex h-full flex-col"
       >
-        {/* Placeholder artwork with clip-path wipe reveal */}
-        <motion.div
-          variants={reduced ? fadeOnly : clipReveal}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+        {/* Cover artwork */}
+        <div
           className={cn(
             "noise relative m-3 flex-1 overflow-hidden rounded-2xl bg-gradient-to-br",
             study.art,
           )}
         >
           <ProjectCover id={study.cover} />
-          <span className="absolute bottom-4 right-5 z-[2] font-mono text-8xl font-bold text-white/10 transition-colors duration-500 group-hover:text-white/20">
+          <span className="absolute bottom-4 right-5 font-mono text-8xl font-bold text-white/10 transition-colors duration-500 group-hover:text-white/20">
             0{index + 1}
           </span>
           <div className="absolute top-5 left-5 z-[2] flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-4 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.15em] text-zinc-200 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
             <ExternalLink className="h-3 w-3" strokeWidth={2} />
             <span>Visit live site</span>
           </div>
-        </motion.div>
+        </div>
 
         <div className="flex items-end justify-between gap-6 p-7">
           <div>
