@@ -21,8 +21,8 @@ export default function SiteHeader() {
       />
       <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
         <a href="#top" className="flex items-center gap-3">
-          <KassoraMark className="h-9 w-9" />
-          <span className="text-sm font-bold uppercase tracking-[0.35em] text-zinc-100">
+          <KassoraMark className="h-11 w-11 md:h-9 md:w-9" />
+          <span className="text-base font-bold uppercase tracking-[0.35em] text-zinc-100 md:text-sm">
             Kassora
           </span>
         </a>

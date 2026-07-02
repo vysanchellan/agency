@@ -108,7 +108,7 @@ export default function Capabilities() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-brand-indigo-bright">
             Capabilities
           </p>
-          <h2 className="mb-16 max-w-3xl text-4xl font-bold tracking-tight text-zinc-50 md:mb-20 md:text-6xl">
+          <h2 className="mb-16 max-w-3xl text-5xl font-bold tracking-tight text-zinc-50 md:mb-20 md:text-6xl">
             What we deploy.
           </h2>
         </ScrollReveal>
@@ -153,7 +153,7 @@ export default function Capabilities() {
                       <h3 className="mb-3 text-xl font-bold tracking-tight text-zinc-50 md:text-2xl">
                         {cap.title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-zinc-400">
+                      <p className="text-base leading-relaxed text-zinc-400 md:text-sm">
                         {cap.blurb}
                       </p>
                     </div>

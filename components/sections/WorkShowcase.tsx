@@ -115,7 +115,7 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
             <h3 className="mb-2 text-2xl font-bold tracking-tight text-zinc-50 md:text-3xl">
               {study.name}
             </h3>
-            <p className="mb-3 max-w-sm text-sm leading-relaxed text-zinc-400">
+            <p className="mb-3 max-w-sm text-base leading-relaxed text-zinc-400 md:text-sm">
               {study.description}
             </p>
             <div className="flex flex-wrap items-center gap-2">
@@ -190,7 +190,7 @@ export default function WorkShowcase() {
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
           Portfolio
         </p>
-        <h2 className="text-4xl font-bold tracking-tight text-zinc-50 md:text-6xl">
+        <h2 className="text-5xl font-bold tracking-tight text-zinc-50 md:text-6xl">
           Ships we&rsquo;ve launched.
         </h2>
         <p className="mt-4 max-w-lg text-zinc-500">

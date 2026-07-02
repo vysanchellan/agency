@@ -77,7 +77,7 @@ export default function Process() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
             Process
           </p>
-          <h2 className="mb-16 max-w-3xl text-4xl font-bold tracking-tight text-zinc-50 md:mb-24 md:text-6xl">
+          <h2 className="mb-16 max-w-3xl text-5xl font-bold tracking-tight text-zinc-50 md:mb-24 md:text-6xl">
             Four steps. No mystery, all method.
           </h2>
         </ScrollReveal>
@@ -112,7 +112,9 @@ export default function Process() {
                 <h3 className="mb-3 text-2xl font-bold tracking-tight text-zinc-50">
                   {step.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-zinc-400">{step.body}</p>
+                <p className="text-base leading-relaxed text-zinc-400 md:text-sm">
+                  {step.body}
+                </p>
               </motion.li>
           ))}
         </motion.ol>

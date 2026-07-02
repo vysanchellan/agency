@@ -95,7 +95,7 @@ export default function Testimonial() {
         <blockquote>
           <p
             ref={quoteRef}
-            className="text-3xl font-bold leading-[1.2] tracking-tight text-zinc-100 md:text-5xl"
+            className="text-4xl font-bold leading-[1.2] tracking-tight text-zinc-100 md:text-5xl"
           >
             &ldquo;Kassora completely transformed how we approach our
             go-to-market strategy. The conversion architecture they designed{" "}

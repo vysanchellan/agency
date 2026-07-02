@@ -23,7 +23,7 @@ export default function ContactCTA() {
       </div>
 
       <div className="relative z-[2] mx-auto max-w-7xl px-6 md:px-10">
-        <h2 className="max-w-5xl text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.02] tracking-tight text-zinc-50">
+        <h2 className="max-w-5xl text-[clamp(3rem,7vw,6rem)] font-bold leading-[1.02] tracking-tight text-zinc-50">
           <TextReveal text="Let's build something" />
           <br />
           <TextReveal
@@ -34,7 +34,7 @@ export default function ContactCTA() {
         </h2>
 
         <ScrollReveal delay={0.35}>
-          <p className="mt-8 max-w-lg text-lg leading-relaxed text-zinc-400">
+          <p className="mt-8 max-w-lg text-xl leading-relaxed text-zinc-400 md:text-lg">
             Whether you&rsquo;re launching your first product or scaling an
             established platform, we want to hear your story. Tell us what
             you&rsquo;re building.

@@ -59,7 +59,7 @@ export default function Hero() {
             Kassora — Durban, South Africa
           </motion.p>
 
-          <h1 className="text-[clamp(2.75rem,7.5vw,6.5rem)] font-bold leading-[0.98] tracking-tight text-zinc-50">
+          <h1 className="text-[clamp(3.25rem,7.5vw,6.5rem)] font-bold leading-[0.98] tracking-tight text-zinc-50">
             <TextReveal text="Market" delay={0.15} />{" "}
             <TextReveal
               text="beyond"
@@ -72,7 +72,7 @@ export default function Hero() {
 
           <motion.p
             {...rise(0.55)}
-            className="mt-10 max-w-xl text-lg leading-relaxed text-zinc-400 md:text-xl"
+            className="mt-10 max-w-xl text-xl leading-relaxed text-zinc-400"
           >
             Kassora gives ambitious companies the intelligence to dominate
             their market. From brand positioning to conversion architecture —
@@ -97,7 +97,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        <div className="mx-auto w-[70vw] max-w-[300px] md:w-full md:max-w-[440px]">
+        <div className="mx-auto w-[82vw] max-w-[360px] md:w-full md:max-w-[440px]">
           <LogoReveal />
         </div>
       </div>

@@ -33,7 +33,7 @@ export default function Stats() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
             The numbers
           </p>
-          <h2 className="mb-16 max-w-3xl text-4xl font-bold tracking-tight text-zinc-50 md:mb-24 md:text-6xl">
+          <h2 className="mb-16 max-w-3xl text-5xl font-bold tracking-tight text-zinc-50 md:mb-24 md:text-6xl">
             Ambition, quantified.
           </h2>
         </ScrollReveal>
