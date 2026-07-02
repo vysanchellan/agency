@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 import {
   fadeOnly,
   staggerContainer,
@@ -29,12 +29,18 @@ type TextRevealProps = {
  */
 export default function TextReveal({
   text,
-  as: Tag = "span",
+  as = "span",
   className,
   delay = 0,
   per = "word",
   once = true,
 }: TextRevealProps) {
+  // Widen the polymorphic tag so TS accepts children/className on any element.
+  const Tag = as as ElementType<{
+    className?: string;
+    children?: ReactNode;
+    "aria-label"?: string;
+  }>;
   const reduced = useReducedMotion();
   const words = text.split(" ");
   const stagger = per === "char" ? STAGGER.chars : STAGGER.words;

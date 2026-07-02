@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kassora Labs
 
-## Getting Started
+Marketing site for **Kassora Labs** — a Durban-based studio building brand
+identity, web experience, and product design. The site is the studio's own
+flagship demo: every animation on it is a selling point.
 
-First, run the development server:
+> We build the internet's most alive websites.
+
+## Stack
+
+- **Next.js 15** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** (+ tailwindcss-animate)
+- **Framer Motion** — entrances, scroll progress, parallax, magnetic button, tilt, count-up
+- **GSAP** + ScrollTrigger + SplitText — pinned horizontal work showcase, scrubbed testimonial reveal
+- **Lenis** — inertia smooth scrolling, driven by the GSAP ticker
+- **Three.js** + React Three Fiber + Drei + Postprocessing — hero blob with `MeshDistortMaterial`, Lightformer environment, contact shadows, bloom
+
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build && npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy
 
-## Learn More
+Zero backend, zero env vars. Push to GitHub and import into
+[Vercel](https://vercel.com/new) — the defaults just work.
 
-To learn more about Next.js, take a look at the following resources:
+## Where things live
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/                    layout (Lenis provider, cursor glow, scroll progress), page, global CSS
+components/animations/  ScrollReveal, TextReveal, Parallax, MagneticButton,
+                        CursorGlow, CountUp, TiltCard, ScrollProgress
+components/sections/    Hero, ClientMarquee, WorkShowcase (pinned), Capabilities (bento),
+                        Process, Stats, Testimonial, ContactCTA
+components/three/       React Three Fiber scenes (kept out of UI components)
+lib/animations.ts       shared easing, springs, stagger configs, and variants
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Accessibility & performance
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `prefers-reduced-motion` is respected everywhere: Lenis switches to native
+  scroll, the pinned showcase becomes a plain horizontal scroller, text
+  reveals collapse to fades, and the 3D blob stops morphing.
+- All animation is transform/opacity only; pointer listeners are
+  rAF-throttled; the WebGL canvas is lazy-loaded client-side.
