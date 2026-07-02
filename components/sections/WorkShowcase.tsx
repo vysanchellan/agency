@@ -11,9 +11,9 @@ import {
   Globe,
   type LucideIcon,
 } from "lucide-react";
+import Image from "next/image";
 import { useRef } from "react";
 import TiltCard from "@/components/animations/TiltCard";
-import ProjectCover, { type CoverId } from "@/components/work/ProjectCover";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -31,9 +31,8 @@ type CaseStudy = {
   discipline: string;
   url: string;
   tech: string;
-  cover: CoverId;
-  /** Tailwind gradient classes behind the animated cover scene. */
-  art: string;
+  /** Real screenshot of the live site, captured into public/work/. */
+  image: string;
   accent: string;
 };
 
@@ -46,8 +45,7 @@ const CASE_STUDIES: CaseStudy[] = [
     discipline: "Web Experience",
     url: "https://panelproauto.co.za",
     tech: "Next.js · TypeScript · Tailwind",
-    cover: "panelpro",
-    art: "from-gold-deep/25 via-zinc-950 to-zinc-950",
+    image: "/work/panelpro.png",
     accent: "text-gold-bright",
   },
   {
@@ -57,8 +55,7 @@ const CASE_STUDIES: CaseStudy[] = [
     discipline: "Web Platform",
     url: "https://travellingsouthafrica.co.za",
     tech: "Next.js · TypeScript · PostgreSQL",
-    cover: "travelsa",
-    art: "from-brand-indigo/40 via-zinc-950 to-zinc-950",
+    image: "/work/travelsa.png",
     accent: "text-brand-indigo-bright",
   },
   {
@@ -68,8 +65,7 @@ const CASE_STUDIES: CaseStudy[] = [
     discipline: "Corporate Web Platform",
     url: "https://pointtaken.co.za",
     tech: "Supply Chain · Store · Client Portal",
-    cover: "pointtaken",
-    art: "from-brand-indigo/30 via-zinc-950 to-zinc-950",
+    image: "/work/pointtaken.png",
     accent: "text-gold",
   },
 ];
@@ -83,15 +79,21 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
         rel="noopener noreferrer"
         className="flex h-full flex-col"
       >
-        {/* Cover artwork */}
-        <div
-          className={cn(
-            "noise relative m-3 flex-1 overflow-hidden rounded-2xl bg-gradient-to-br",
-            study.art,
-          )}
-        >
-          <ProjectCover id={study.cover} />
-          <span className="absolute bottom-4 right-5 font-mono text-8xl font-bold text-white/10 transition-colors duration-500 group-hover:text-white/20">
+        {/* Real site screenshot as the cover */}
+        <div className="relative m-3 flex-1 overflow-hidden rounded-2xl bg-zinc-950">
+          <Image
+            src={study.image}
+            alt={`${study.name} — live site`}
+            fill
+            sizes="(min-width: 768px) 50vw, 84vw"
+            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          />
+          {/* Legibility gradient so the numeral and chip always read */}
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/20"
+          />
+          <span className="absolute bottom-4 right-5 font-mono text-8xl font-bold text-white/15 transition-colors duration-500 group-hover:text-white/25">
             0{index + 1}
           </span>
           <div className="absolute top-5 left-5 z-[2] flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-4 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.15em] text-zinc-200 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
