@@ -64,6 +64,10 @@ export const fadeUpLite: Variants = {
   visible: {
     opacity: 1,
     y: 0,
+    // Guard against a blurred initial state captured before the coarse-
+    // pointer flag flipped: targets must always clear the filter, or the
+    // element freezes mid-blur (Framer only animates keys in the target).
+    filter: "blur(0px)",
     transition: { duration: DURATION.base, ease: EASE },
   },
 };
@@ -71,7 +75,11 @@ export const fadeUpLite: Variants = {
 /** Reduced-motion fallback — a plain fade, no movement, no blur. */
 export const fadeOnly: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: DURATION.fast } },
+  visible: {
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: { duration: DURATION.fast },
+  },
 };
 
 /** Word/char reveal used by TextReveal — rises out of an overflow clip. */
@@ -91,6 +99,7 @@ export const textRevealItemLite: Variants = {
   visible: {
     y: "0%",
     opacity: 1,
+    filter: "blur(0px)",
     transition: { duration: DURATION.base, ease: EASE },
   },
 };

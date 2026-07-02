@@ -43,10 +43,14 @@ export default function ScrollReveal({
             : { opacity: 0, y, filter: "blur(10px)" }
       }
       whileInView={
+        // Every target clears the filter: the coarse/reduced flags flip
+        // shortly after mount, so an element may have captured a blurred
+        // initial state — without blur(0px) in the target it stays frozen
+        // blurred (Framer only animates keys present in the target).
         reduced
-          ? { opacity: 1 }
+          ? { opacity: 1, filter: "blur(0px)" }
           : coarse
-            ? { opacity: 1, y: 0 }
+            ? { opacity: 1, y: 0, filter: "blur(0px)" }
             : { opacity: 1, y: 0, filter: "blur(0px)" }
       }
       viewport={{ once, margin: "-12% 0px -12% 0px" }}

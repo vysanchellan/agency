@@ -10,7 +10,14 @@ import {
 } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { cn } from "@/lib/utils";
-import { fadeOnly, fadeUp, staggerContainer, STAGGER } from "@/lib/animations";
+import {
+  fadeOnly,
+  fadeUp,
+  fadeUpLite,
+  staggerContainer,
+  STAGGER,
+} from "@/lib/animations";
+import { useCoarsePointer } from "@/lib/hooks";
 
 const STEPS: Array<{
   number: string;
@@ -61,6 +68,7 @@ const STEPS: Array<{
  */
 export default function Process() {
   const reduced = useReducedMotion();
+  const coarse = useCoarsePointer();
 
   return (
     <section id="process" className="relative border-t border-zinc-900 py-32 md:py-44">
@@ -84,7 +92,7 @@ export default function Process() {
           {STEPS.map((step) => (
               <motion.li
                 key={step.number}
-                variants={reduced ? fadeOnly : fadeUp}
+                variants={reduced ? fadeOnly : coarse ? fadeUpLite : fadeUp}
                 className="group relative will-change-transform"
               >
                 <step.icon

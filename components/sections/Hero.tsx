@@ -26,11 +26,10 @@ export default function Hero() {
       : coarse
         ? { opacity: 0, y: 20 }
         : { opacity: 0, y: 20, filter: "blur(8px)" },
-    animate: reduced
-      ? { opacity: 1 }
-      : coarse
-        ? { opacity: 1, y: 0 }
-        : { opacity: 1, y: 0, filter: "blur(0px)" },
+    // The target always clears the filter — the coarse flag flips just after
+    // first render, and a target without a filter key would leave the
+    // captured blur frozen on screen.
+    animate: { opacity: 1, y: 0, filter: "blur(0px)" },
     transition: { duration: DURATION.base, ease: EASE, delay },
   });
 
