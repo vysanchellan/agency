@@ -5,7 +5,6 @@
   --color-base: #0a0910;
   --color-base-soft: #100e18;
 
-  /* Kassora brand — sampled from the logo mark */
   --color-gold: #c29a45;
   --color-gold-bright: #e4c273;
   --color-gold-deep: #8f6f2c;
@@ -17,18 +16,12 @@
   --animate-marquee: marquee 42s linear infinite;
 
   @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 }
 
-html {
-  scroll-behavior: auto;
-}
+html { scroll-behavior: auto; }
 
 body {
   background: var(--color-base);
@@ -42,18 +35,10 @@ body {
   color: #fdf6e3;
 }
 
-/* ---------------------------------------------------------------------------
-   Living gradient text — background position drifts slowly so key phrases
-   feel alive. Falls back to a static gradient under reduced motion.
---------------------------------------------------------------------------- */
+/* Living gradient text */
 @keyframes gradient-drift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .text-gradient-live {
@@ -73,18 +58,11 @@ body {
   animation: gradient-drift 7s ease-in-out infinite;
 }
 
-/* Ambient blobs drifting behind the hero canvas */
+/* Ambient blobs */
 @keyframes blob-drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  33% {
-    transform: translate3d(4%, -6%, 0) scale(1.08);
-  }
-  66% {
-    transform: translate3d(-5%, 5%, 0) scale(0.94);
-  }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(4%, -6%, 0) scale(1.08); }
+  66% { transform: translate3d(-5%, 5%, 0) scale(0.94); }
 }
 
 .animate-blob {
@@ -97,7 +75,7 @@ body {
   will-change: transform;
 }
 
-/* Grain overlay — SVG fractal noise, layered on top of gradients for texture */
+/* Grain overlay — disabled on mobile for performance */
 .noise::after {
   content: "";
   position: absolute;
@@ -108,14 +86,13 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ---------------------------------------------------------------------------
-   Project cover animations — flowing dashes, a dot travelling a route via
-   offset-path, and a drifting sheen. Used by components/work/ProjectCover.
---------------------------------------------------------------------------- */
+@media (width < 768px) {
+  .noise::after { content: none; }
+}
+
+/* Project cover animations */
 @keyframes cover-dash {
-  to {
-    stroke-dashoffset: -64;
-  }
+  to { stroke-dashoffset: -64; }
 }
 
 .cover-dash {
@@ -123,12 +100,8 @@ body {
 }
 
 @keyframes cover-travel {
-  from {
-    offset-distance: 0%;
-  }
-  to {
-    offset-distance: 100%;
-  }
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
 }
 
 .cover-travel {
@@ -137,13 +110,8 @@ body {
 }
 
 @keyframes cover-sheen {
-  0%,
-  100% {
-    transform: translateX(-60%) skewX(-14deg);
-  }
-  50% {
-    transform: translateX(160%) skewX(-14deg);
-  }
+  0%, 100% { transform: translateX(-60%) skewX(-14deg); }
+  50% { transform: translateX(160%) skewX(-14deg); }
 }
 
 .cover-sheen {
@@ -152,26 +120,37 @@ body {
 }
 
 @keyframes cover-drift {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(26px);
-  }
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(26px); }
 }
 
 .cover-drift {
   animation: cover-drift 12s ease-in-out infinite;
 }
 
+/* Logo shimmer — CSS animation replaces framer-motion for perf */
+@keyframes lr-shimmer-sweep {
+  0% { transform: translateX(-80%) skewX(-18deg); }
+  60% { transform: translateX(320%) skewX(-18deg); }
+  100% { transform: translateX(320%) skewX(-18deg); }
+}
+
+.lr-shimmer rect {
+  animation: lr-shimmer-sweep 5.5s ease-in-out infinite;
+  animation-delay: 2.5s;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .cover-dash,
-  .cover-travel,
-  .cover-sheen,
-  .cover-drift {
+  .cover-dash, .cover-travel, .cover-sheen, .cover-drift,
+  .animate-marquee, .animate-blob, .animate-blob-slow,
+  .text-gradient-live, .lr-shimmer rect {
     animation: none;
   }
+}
+
+@media (width < 768px) {
+  .lr-shimmer rect { animation: none; }
 }
 
 /* Marquee edge fade */
@@ -183,13 +162,4 @@ body {
     black 88%,
     transparent
   );
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee,
-  .animate-blob,
-  .animate-blob-slow,
-  .text-gradient-live {
-    animation: none;
-  }
 }
