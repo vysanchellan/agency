@@ -26,7 +26,7 @@ export default function Hero() {
         <div className="animate-blob absolute -top-1/4 left-[8%] h-[60vmax] w-[60vmax] rounded-full bg-gold/10 blur-3xl" />
         <div className="animate-blob-slow absolute top-[30%] -right-[15%] h-[55vmax] w-[55vmax] rounded-full bg-brand-indigo/25 blur-3xl" />
         <div className="animate-blob absolute -bottom-[30%] left-[30%] h-[50vmax] w-[50vmax] rounded-full bg-brand-indigo-bright/10 blur-3xl" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-base" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-60% to-base" />
       </div>
 
       <div className="relative z-[2] mx-auto grid w-full max-w-7xl items-center gap-16 px-6 pt-28 md:grid-cols-[1.15fr_0.85fr] md:px-10">

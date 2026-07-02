@@ -1,7 +1,7 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -14,6 +14,7 @@ import {
 import { useRef } from "react";
 import TiltCard from "@/components/animations/TiltCard";
 import ProjectCover, { type CoverId } from "@/components/work/ProjectCover";
+import { DURATION, EASE } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -181,7 +182,16 @@ export default function WorkShowcase() {
       id="work"
       className="relative flex h-screen flex-col justify-center overflow-hidden"
     >
-      <div className="mx-auto w-full max-w-7xl px-6 pb-10 md:px-10">
+      {/* Soft gradient bridge from hero into this section */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-32 h-48 bg-gradient-to-b from-base via-base/60 to-transparent" />
+
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: DURATION.base, ease: EASE }}
+        className="mx-auto w-full max-w-7xl px-6 pb-10 md:px-10"
+      >
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
           Portfolio
         </p>
@@ -192,7 +202,7 @@ export default function WorkShowcase() {
           Real projects, real results. Every site we build is engineered for
           performance.
         </p>
-      </div>
+      </motion.div>
 
       <div
         ref={trackRef}
