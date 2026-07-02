@@ -48,8 +48,8 @@ export default function MagneticButton({
 
   const sharedClass = cn(
     "group relative inline-flex cursor-pointer items-center gap-3 rounded-full",
-    "bg-zinc-50 px-8 py-4 text-base font-semibold text-zinc-950",
-    "transition-colors duration-300 hover:bg-emerald-300",
+    "bg-gold px-8 py-4 text-base font-semibold text-zinc-950",
+    "transition-colors duration-300 hover:bg-gold-bright",
     "will-change-transform select-none",
     className,
   );

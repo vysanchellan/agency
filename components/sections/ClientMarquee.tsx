@@ -1,16 +1,14 @@
 "use client";
 
 const CLIENTS = [
-  "Aurelia Finance",
-  "Nova Athletics",
-  "Mzansi Air",
-  "Sable Hotels",
-  "Orbital Music",
-  "Helix Biotech",
-  "Kilo Coffee",
-  "Velvet Cinema",
-  "Umoya Energy",
-  "Frontier Bank",
+  "PanelPro Auto",
+  "Travelling South Africa",
+  "Top Notch Creations",
+  "OnlySA",
+  "Just Lance",
+  "Lulalend",
+  "Yoco",
+  "SnapScan",
 ];
 
 /**
@@ -23,7 +21,7 @@ export default function ClientMarquee() {
 
   return (
     <section
-      aria-label="Selected clients"
+      aria-label="Clients and collaborations"
       className="relative border-y border-zinc-900 bg-base-soft py-10"
     >
       <div className="marquee-mask overflow-hidden">

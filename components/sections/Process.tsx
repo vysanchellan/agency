@@ -9,24 +9,24 @@ const STEPS = [
     number: "01",
     title: "Discover",
     body: "We interrogate the brief until it confesses. Positioning, audience, ambition — before a single pixel moves.",
-    accent: "text-emerald-400",
+    accent: "text-gold",
   },
   {
     number: "02",
     title: "Design",
-    body: "Direction, identity, and interaction designed together. Motion is decided here, not bolted on later.",
-    accent: "text-cyan-400",
+    body: "Brand, interaction, and conversion architecture designed together. Every pixel has a job: convert.",
+    accent: "text-brand-indigo-bright",
   },
   {
     number: "03",
     title: "Build",
-    body: "Production-grade engineering — 60fps animation, obsessive performance budgets, zero jank tolerated.",
-    accent: "text-violet-400",
+    body: "Full-stack execution at velocity — production-grade engineering, obsessive performance budgets, zero jank.",
+    accent: "text-gold-bright",
   },
   {
     number: "04",
     title: "Launch",
-    body: "We ship, measure, and tune. A Kassora site leaves the building alive and stays that way.",
+    body: "48-hour launch turnaround, then we measure and tune. Continuous A/B experiments compound the gains.",
     accent: "text-amber-400",
   },
 ];
@@ -43,7 +43,7 @@ export default function Process() {
     <section id="process" className="relative border-t border-zinc-900 py-32 md:py-44">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <ScrollReveal>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-violet-400">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
             Process
           </p>
           <h2 className="mb-16 max-w-3xl text-4xl font-bold tracking-tight text-zinc-50 md:mb-24 md:text-6xl">

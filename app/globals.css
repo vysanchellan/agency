@@ -2,8 +2,15 @@
 @plugin "tailwindcss-animate";
 
 @theme {
-  --color-base: #09090b;
-  --color-base-soft: #101014;
+  --color-base: #0a0910;
+  --color-base-soft: #100e18;
+
+  /* Kassora brand — sampled from the logo mark */
+  --color-gold: #c29a45;
+  --color-gold-bright: #e4c273;
+  --color-gold-deep: #8f6f2c;
+  --color-brand-indigo: #2e2778;
+  --color-brand-indigo-bright: #8b7fe0;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
@@ -31,8 +38,8 @@ body {
 }
 
 ::selection {
-  background: rgba(52, 211, 153, 0.25);
-  color: #ecfdf5;
+  background: rgba(194, 154, 69, 0.3);
+  color: #fdf6e3;
 }
 
 /* ---------------------------------------------------------------------------
@@ -52,11 +59,11 @@ body {
 .text-gradient-live {
   background-image: linear-gradient(
     100deg,
-    #34d399 0%,
-    #22d3ee 28%,
-    #a78bfa 55%,
-    #fbbf24 80%,
-    #34d399 100%
+    #e4c273 0%,
+    #c29a45 26%,
+    #8b7fe0 52%,
+    #e4c273 78%,
+    #c29a45 100%
   );
   background-size: 320% 100%;
   background-clip: text;

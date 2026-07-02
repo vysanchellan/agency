@@ -10,12 +10,28 @@ import ScrollReveal from "@/components/animations/ScrollReveal";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
+const SUPPORTING = [
+  {
+    quote:
+      "The level of polish and attention to detail is unlike anything we've seen. From the clean codebase to the pixel-perfect UI — every deliverable exceeded expectations. Our users noticed immediately.",
+    name: "Riaan Botha",
+    role: "Software Engineer, Yoco",
+    initials: "RB",
+  },
+  {
+    quote:
+      "Working with Kassora felt less like hiring an agency and more like gaining a product team. Their data-driven approach to design and relentless focus on accessibility set a new bar for our product.",
+    name: "Lerato Mokoena",
+    role: "UX Designer, SnapScan",
+    initials: "LM",
+  },
+];
+
 /**
- * One oversized client quote. GSAP SplitText breaks it into words and a
- * scrubbed ScrollTrigger reveals them in reading order as the section moves
- * through the viewport. Words inside the key phrase inherit the living
- * gradient treatment (background position drifts via CSS keyframes).
- * Reduced motion falls back to a single fade from ScrollReveal semantics.
+ * The lead client quote, split into words by GSAP SplitText and revealed in
+ * reading order as a scrubbed ScrollTrigger moves through the viewport. Words
+ * inside the marked phrase carry the living gradient. Two supporting quotes
+ * follow with standard scroll reveals.
  */
 export default function Testimonial() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -66,8 +82,8 @@ export default function Testimonial() {
     >
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <ScrollReveal>
-          <p className="mb-12 text-xs font-semibold uppercase tracking-[0.28em] text-emerald-400">
-            What clients say
+          <p className="mb-12 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
+            Trusted by builders
           </p>
         </ScrollReveal>
 
@@ -76,29 +92,57 @@ export default function Testimonial() {
             ref={quoteRef}
             className="text-3xl font-bold leading-[1.2] tracking-tight text-zinc-100 md:text-5xl"
           >
-            &ldquo;Kassora didn&rsquo;t redesign our website — they{" "}
+            &ldquo;Kassora completely transformed how we approach our
+            go-to-market strategy. The conversion architecture they designed{" "}
             <span data-gradient className="text-gradient-live">
-              gave the brand a pulse.
+              doubled our trial-to-paid rate
             </span>{" "}
-            Six months on, every product demo starts with someone asking who
-            built the site.&rdquo;
+            within the first month. Absolutely game-changing.&rdquo;
           </p>
 
           <ScrollReveal delay={0.2}>
             <footer className="mt-12 flex items-center gap-4">
               <span
                 aria-hidden
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400/30 to-cyan-500/30 text-sm font-bold text-emerald-200"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-gold/40 to-brand-indigo/50 text-sm font-bold text-gold-bright"
               >
-                NM
+                TN
               </span>
               <div>
-                <p className="font-semibold text-zinc-100">Naledi Mokoena</p>
-                <p className="text-sm text-zinc-500">CEO, Aurelia Finance</p>
+                <p className="font-semibold text-zinc-100">Thandi Ndlovu</p>
+                <p className="text-sm text-zinc-500">
+                  Product Manager, Lulalend
+                </p>
               </div>
             </footer>
           </ScrollReveal>
         </blockquote>
+
+        <div className="mt-24 grid gap-6 md:grid-cols-2">
+          {SUPPORTING.map((t, i) => (
+            <ScrollReveal key={t.name} delay={i * 0.12}>
+              <figure className="flex h-full flex-col justify-between rounded-3xl bg-zinc-900/50 p-8 backdrop-blur-sm">
+                <blockquote className="text-base leading-relaxed text-zinc-300">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-8 flex items-center gap-4">
+                  <span
+                    aria-hidden
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-brand-indigo/60 to-gold/30 text-xs font-bold text-zinc-100"
+                  >
+                    {t.initials}
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-zinc-100">
+                      {t.name}
+                    </p>
+                    <p className="text-xs text-zinc-500">{t.role}</p>
+                  </div>
+                </figcaption>
+              </figure>
+            </ScrollReveal>
+          ))}
+        </div>
       </div>
     </section>
   );

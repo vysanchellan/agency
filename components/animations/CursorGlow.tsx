@@ -28,9 +28,9 @@ export default function CursorGlow() {
 
   const background = useMotionTemplate`
     radial-gradient(560px circle at ${glowX}px ${glowY}px,
-      rgba(52, 211, 153, 0.09),
-      rgba(34, 211, 238, 0.05) 38%,
-      rgba(167, 139, 250, 0.03) 62%,
+      rgba(194, 154, 69, 0.09),
+      rgba(139, 127, 224, 0.05) 38%,
+      rgba(46, 39, 120, 0.04) 62%,
       transparent 78%)
   `;
 

@@ -14,56 +14,60 @@ type Capability = {
   delay: number;
 };
 
+/** Kassora's real service lines, in the studio's own words. */
 const CAPABILITIES: Capability[] = [
   {
-    title: "Brand Identity",
+    title: "Web Development",
     blurb:
-      "Identities engineered to move — logo systems, voice, and worlds a brand can actually live in.",
+      "From landing pages to full product sites — we build, deploy, and iterate at velocity. Full-stack execution, engineered for performance.",
     span: "md:col-span-4 md:row-span-2",
-    glow: "from-emerald-500/25",
-    accent: "bg-emerald-400",
+    glow: "from-gold/25",
+    accent: "bg-gold",
     delay: 0,
   },
   {
-    title: "Web Experience Design",
-    blurb: "Websites people describe to their friends. That's the metric.",
+    title: "Brand Strategy",
+    blurb:
+      "Systematic brand identity built for scale — visual systems, messaging hierarchies, and positioning that sticks.",
     span: "md:col-span-2",
-    glow: "from-cyan-500/25",
-    accent: "bg-cyan-400",
+    glow: "from-brand-indigo-bright/25",
+    accent: "bg-brand-indigo-bright",
     delay: 0.14,
   },
   {
-    title: "Product Design",
-    blurb: "Interfaces that feel inevitable — from first flow to final polish.",
+    title: "Conversion Architecture",
+    blurb:
+      "Every pixel designed to convert. Funnels engineered through real behavioral data, not guesswork.",
     span: "md:col-span-2",
-    glow: "from-violet-500/25",
-    accent: "bg-violet-400",
+    glow: "from-gold-bright/25",
+    accent: "bg-gold-bright",
     delay: 0.07,
   },
   {
-    title: "Motion & Interaction",
+    title: "Mobile Apps",
     blurb:
-      "Choreography for the cursor. Every hover, scroll, and transition on purpose.",
+      "Native-feeling mobile experiences that carry your product everywhere your customers go.",
     span: "md:col-span-2",
-    glow: "from-amber-500/25",
-    accent: "bg-amber-400",
+    glow: "from-violet-500/25",
+    accent: "bg-violet-400",
     delay: 0.2,
   },
   {
-    title: "3D & WebGL",
+    title: "Analytics & SEO",
     blurb:
-      "Real-time graphics in the browser — shaders, scenes, and objects with presence.",
+      "Custom dashboards and analytics pipelines give you signal from the noise, instantly — and search visibility that compounds.",
     span: "md:col-span-4",
-    glow: "from-cyan-500/20",
-    accent: "bg-teal-400",
+    glow: "from-brand-indigo/30",
+    accent: "bg-brand-indigo-bright",
     delay: 0.11,
   },
   {
-    title: "Design Systems",
-    blurb: "The boring superpower: consistency that scales with your team.",
+    title: "DevOps & Performance",
+    blurb:
+      "Infrastructure, integrations, and a 99.9% uptime record. Fast is a feature.",
     span: "md:col-span-2",
-    glow: "from-violet-500/20",
-    accent: "bg-fuchsia-400",
+    glow: "from-amber-500/20",
+    accent: "bg-amber-400",
     delay: 0.25,
   },
 ];
@@ -78,11 +82,11 @@ export default function Capabilities() {
     <section id="capabilities" className="relative py-32 md:py-44">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <ScrollReveal>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-400">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-brand-indigo-bright">
             Capabilities
           </p>
           <h2 className="mb-16 max-w-3xl text-4xl font-bold tracking-tight text-zinc-50 md:mb-20 md:text-6xl">
-            Three disciplines. One obsession with motion.
+            What we deploy.
           </h2>
         </ScrollReveal>
 

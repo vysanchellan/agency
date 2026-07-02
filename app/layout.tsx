@@ -12,12 +12,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kassora Labs — We build the internet's most alive websites",
+  title: "Kassora — Market Beyond Limits",
   description:
-    "Kassora Labs is a Durban-based studio building brand identity, web experience, and product design for ambitious clients.",
+    "Kassora is a Durban-based studio giving ambitious companies the intelligence to dominate their market — brand strategy, web development, mobile apps, and conversion architecture.",
   openGraph: {
-    title: "Kassora Labs",
-    description: "We build the internet's most alive websites.",
+    title: "Kassora",
+    description:
+      "Market beyond limits. Brand, web, and product experiences built in Durban, South Africa.",
     locale: "en_ZA",
     type: "website",
   },
