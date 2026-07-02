@@ -63,7 +63,19 @@ export default function LogoReveal({ className }: { className?: string }) {
 
         {SHAPES.map((shape) => (
           <g key={shape.d}>
-            <path d={shape.d} fill={shape.fill} />
+            {/* Fill fades in only after its outline finishes tracing — the
+                mark visibly draws itself into being. */}
+            <motion.path
+              d={shape.d}
+              fill={shape.fill}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={
+                reduced
+                  ? { duration: 0.6 }
+                  : { duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: shape.delay + 0.7 }
+              }
+            />
             {!reduced && (
               <motion.path
                 d={shape.d}
@@ -78,11 +90,11 @@ export default function LogoReveal({ className }: { className?: string }) {
                 animate={{ pathLength: 1, opacity: 0 }}
                 transition={{
                   pathLength: {
-                    duration: 0.8,
+                    duration: 1.4,
                     ease: "easeInOut",
                     delay: shape.delay,
                   },
-                  opacity: { duration: 0.4, delay: shape.delay + 0.6 },
+                  opacity: { duration: 0.8, delay: shape.delay + 1.6 },
                 }}
               />
             )}
